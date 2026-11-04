@@ -47,28 +47,34 @@ but it contains multiple syntax errors that prevent it from being parsed.
 const invalidBookingJSON = `
 {
   "hotelName": "Grand City Hotel",
-  "checkInDate": "2024-05-15"
+  "checkInDate": "2024-05-15",
   "checkOutDate": "2024-05-20",
   "guests": [
     {
-      name: "Alice Johnson",
+      "name": "Alice Johnson",
       "age": 30,
       "email": "alice.johnson@example.com"
     },
     {
       "name": "Bob Smith",
-      "age": undefined,
-      "email": "bob.smith@example"
+      "age": null,
+      "email": "bob.smith@example.com"
     }
   ],
   "roomDetails": {
     "type": "Suite",
     "pricePerNight": 200,
-    "amenities": ["WiFi", "Breakfast", "Parking",]
+    "amenities": ["WiFi", "Breakfast", "Parking"]
   }
 }
 `;
-
+/*
+Line 50: missing seperator comma
+Line 54: missing quotes on key
+Line 60: undefined is undefined in json, null instead
+Line 61: invalid email(technically not a syntax error but definitely would cause problems)
+Line 67(teehee): trailing comma inside of array
+*/ 
 
 // ============================================
 // ✅ Requirements
@@ -91,11 +97,12 @@ const invalidBookingJSON = `
 💬 Reflect and answer the following:
 
 1️⃣ What tools or techniques did you use to identify the errors?
-
+Eyeballs, the linter cam up clean after a pass
 2️⃣ How did you confirm that your corrected JSON file was valid?
-
+linter and aforementioned eyes
 3️⃣ Which errors were the most difficult to spot? Why?
-
+trailing comma I guess, I actually dont know if that was an issue but I assume it wouldnt compile
 4️⃣ What strategies can help you avoid these kinds of errors in the future?
    (e.g., syntax highlighting, linters, writing JSON by example)
+   Write good, double check, copy paste confirmed valid json then just rewrite
 */
